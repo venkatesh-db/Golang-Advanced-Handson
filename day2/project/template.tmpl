@@ -1,0 +1,13 @@
+
+package main
+
+// Code generated automatically. DO NOT EDIT.
+
+type {{.Name}}Mock struct{}
+
+{{range .Methods}}
+func (m *{{$.Name}}Mock) {{.Name}}({{.Params}}) {{.Return}} {
+	// mock logic
+	return {{.DefaultReturn}}
+}
+{{end}}
