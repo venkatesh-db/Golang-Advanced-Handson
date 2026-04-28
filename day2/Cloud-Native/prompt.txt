@@ -1,0 +1,72 @@
+
+
+You are a senior Golang cloud-native engineer building a production-ready microservice.
+
+Generate a clean, minimal but realistic Go microservice with Docker and Observability.
+
+1. Project Structure:
+   - cmd/server/main.go
+   - internal/config/config.go
+   - internal/handler/http_handler.go
+   - internal/service/service.go
+   - internal/middleware/middleware.go
+   - internal/observability/logger.go
+   - internal/observability/metrics.go
+   - internal/observability/tracing.go
+
+2. Core Requirements:
+   - Use net/http (no heavy frameworks)
+   - Endpoints:
+       GET /health  → returns 200 OK
+       GET /hello   → returns JSON message
+       GET /metrics → Prometheus metrics
+
+3. Observability (MANDATORY):
+   - Logging:
+       Use structured logging (zap or logrus)
+       Include request_id, method, path, latency
+   - Metrics:
+       Prometheus counter (requests_total)
+       Histogram (request_duration_seconds)
+   - Tracing:
+       OpenTelemetry with stdout exporter
+       Middleware should create spans per request
+
+4. Middleware:
+   - Logging middleware
+   - Metrics middleware
+   - Tracing middleware
+   - Panic recovery middleware
+
+5. Configuration:
+   - Read PORT from environment variable
+   - Default to 8080
+   - Clean config struct
+
+6. Production Readiness:
+   - Graceful shutdown using context + SIGTERM
+   - Proper error handling (no panics)
+   - Timeouts on HTTP server
+
+7. Docker (IMPORTANT):
+   - Multi-stage Dockerfile
+   - Build using golang:1.22
+   - Final image using alpine or scratch
+   - Binary optimized (CGO_ENABLED=0)
+   - Expose port 8080
+
+8. go.mod:
+   - Include only required dependencies
+
+9. Output Requirements:
+   - Full working code (no placeholders)
+   - No syntax errors
+   - Ready to run:
+           docker build -t go-micro .
+           docker run -p 8080:8080 go-micro
+
+10. Bonus:
+   - Add /ready endpoint (readiness probe)
+   - Add request ID generation middleware
+
+Generate all files completely with correct imports.
